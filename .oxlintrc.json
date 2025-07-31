@@ -1,0 +1,70 @@
+{
+  "ignorePatterns": ["node_modules", "dist", "coverage", "*.min.js", "src/i18n/**"],
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "rules": {
+    "max-depth": ["error", 4],
+    "max-lines": ["error", 999],
+    "max-lines-per-function": ["error", 50],
+    "max-params": ["error", 4],
+    "max-statements": ["error", 15],
+    "no-shadow": "error",
+    "no-underscore-dangle": "error",
+    "consistent-return": "error",
+    "default-case": "error",
+    "default-case-last": "error",
+    "no-mixed-operators": "error",
+    "no-multi-assign": "error",
+    "no-nested-ternary": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "no-confusing-arrow": "error",
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "prefer-destructuring": ["error", {
+      "array": true,
+      "object": true
+    }],
+    "object-shorthand": "error",
+    "lines-between-class-members": ["error", "always"],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+    ],
+    "no-lonely-if": "error",
+    "generator-star-spacing": ["error", "after"],
+    "symbol-description": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-non-null-assertion": "error",
+        "@typescript-eslint/strict-boolean-expressions": "error",
+        "@typescript-eslint/no-unnecessary-type-assertion": "error",
+        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "@typescript-eslint/prefer-optional-chain": "error",
+        "@typescript-eslint/no-floating-promises": "error",
+        "@typescript-eslint/no-misused-promises": "error",
+        "@typescript-eslint/await-thenable": "error",
+        "@typescript-eslint/no-unnecessary-condition": "error",
+        "@typescript-eslint/no-unsafe-assignment": "error",
+        "@typescript-eslint/no-unsafe-call": "error",
+        "@typescript-eslint/no-unsafe-member-access": "error",
+        "@typescript-eslint/no-unsafe-return": "error"
+      }
+    },
+    {
+      "files": ["*.test.{ts,tsx}", "*.spec.{ts,tsx}"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "max-statements": "off"
+      }
+    }
+  ]
+}
