@@ -1,6 +1,6 @@
-import { css, cx } from "hono/css";
-import type { FC } from "hono/jsx";
-import { useRequestContext } from "hono/jsx-renderer";
+import { css, cx } from 'hono/css';
+import type { FC } from 'hono/jsx';
+import { useRequestContext } from 'hono/jsx-renderer';
 
 const className = css``;
 
@@ -44,8 +44,8 @@ const containerClass = css`
 `;
 
 const links = [
-  { href: "/articles", text: "Articles" },
-  { href: "/articles/create", text: "Create" },
+  { href: '/articles', text: 'Articles' },
+  { href: '/articles/create', text: 'Create' },
 ];
 
 export const Layout: FC = ({ children }) => {
@@ -62,10 +62,7 @@ export const Layout: FC = ({ children }) => {
         </h1>
         <nav class={navClass}>
           {links.map((link) => (
-            <a
-              href={link.href}
-              class={cx(linkClass, current === link.href && activeLinkClass)}
-            >
+            <a href={link.href} class={cx(linkClass, current === link.href && activeLinkClass)}>
               {link.text}
             </a>
           ))}

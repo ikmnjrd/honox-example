@@ -1,5 +1,6 @@
-import { css } from "hono/css";
-import { FC, useRef } from "hono/jsx";
+import { css } from 'hono/css';
+import { useRef } from 'hono/jsx';
+import type { FC } from 'hono/jsx';
 
 const dialogClass = css`
   position: fixed;
@@ -16,21 +17,6 @@ const dialogClass = css`
   }
 `;
 
-const dialogButtons = css`
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 1rem;
-`;
-
-const cancelButton = css`
-  padding: 0.5rem;
-  background-color: #ddd;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-`;
-
 const buttonClass = css`
   background-color: red;
   color: white;
@@ -40,10 +26,10 @@ const buttonClass = css`
   cursor: pointer;
 `;
 
-export default function DeleteButton({ articleId }: { articleId: string }) {
+const DeleteButton: FC<{ articleId: string }> = ({ articleId: _id }) => {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
-  const handleClickDelete = () => {
+  const handleClickDelete = (): void => {
     dialogRef.current?.showModal();
   };
 
@@ -67,4 +53,6 @@ export default function DeleteButton({ articleId }: { articleId: string }) {
       </button>
     </div>
   );
-}
+};
+
+export default DeleteButton;

@@ -1,6 +1,7 @@
-import { useState } from "hono/jsx";
+import { useState } from 'hono/jsx';
+import type { FC } from 'hono/jsx';
 
-export default function Counter() {
+const Counter: FC = () => {
   const [count, setCount] = useState(0);
   return (
     <div>
@@ -8,4 +9,6 @@ export default function Counter() {
       <button onClick={() => setCount(count + 1)}>Increment</button>
     </div>
   );
-}
+};
+
+export default Counter;

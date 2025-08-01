@@ -1,5 +1,5 @@
 {
-  "ignorePatterns": ["node_modules", "dist", "coverage", "*.min.js", "src/i18n/**"],
+  "ignorePatterns": ["node_modules", "dist", "coverage", "*.min.js", "eslint-plugin-local"],
   "env": {
     "browser": true,
     "es2020": true

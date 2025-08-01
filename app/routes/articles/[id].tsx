@@ -1,7 +1,7 @@
-import { FC } from "hono/jsx";
-import { Article, getArticleById } from "../../lib/db";
-import { css } from "hono/css";
-import { createRoute } from "honox/factory";
+import { FC } from 'hono/jsx';
+import { Article, getArticleById } from '../../lib/db';
+import { css } from 'hono/css';
+import { createRoute } from 'honox/factory';
 
 const cardClass = css`
   border: 1px solid #ddd;
@@ -38,20 +38,14 @@ type Props = {
   content: string;
 };
 
-const Page: FC<Props> = ({ article, content }) => {
-  return (
-    <article class={cardClass}>
-      <header>
-        <h1 class={titleClass}>{article.title}</h1>
-      </header>
-      <div
-        class={contentClass}
-        id="contents"
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    </article>
-  );
-};
+const Page: FC<Props> = ({ article, content }) => (
+  <article class={cardClass}>
+    <header>
+      <h1 class={titleClass}>{article.title}</h1>
+    </header>
+    <div class={contentClass} id="contents" dangerouslySetInnerHTML={{ __html: content }} />
+  </article>
+);
 
 export default createRoute(async (c) => {
   const { id } = c.req.param();

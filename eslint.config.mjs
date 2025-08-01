@@ -5,6 +5,8 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 // import pluginLocal from './eslint-plugin-local/dist/index.js';
 
+const ignores = ['eslint-plugin-local/**'];
+
 export default tseslint.config(
   {
     linterOptions: {
@@ -17,13 +19,13 @@ export default tseslint.config(
   },
   {
     files: ['app/**/*.{ts,tsx}'],
-    // ignores: ['src/ui/i18n/**'],
+    ignores,
     languageOptions: {
       globals: globals.browser,
       parser: tsParser,
     },
   },
-  ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
+  ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json')
 
   /* プロジェクト固有のカスタムeslintルール */
   // {

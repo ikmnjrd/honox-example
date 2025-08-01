@@ -1,8 +1,8 @@
-import { FC } from "hono/jsx";
-import { createRoute } from "honox/factory";
-import { Article, getArticles } from "../../lib/db";
-import { css } from "hono/css";
-import DeleteButton from "../../islands/deleteButton";
+import { FC } from 'hono/jsx';
+import { createRoute } from 'honox/factory';
+import { Article, getArticles } from '../../lib/db';
+import { css } from 'hono/css';
+import DeleteButton from '../../islands/deleteButton';
 
 type Props = {
   articles: Article[];
@@ -30,32 +30,29 @@ const card = css`
   justify-content: space-between;
 `;
 
-const Page: FC<Props> = ({ articles }) => {
-  const hoge 
-  return (
-    <div>
-      <h1 class={titleClass}>Articles</h1>
-      <ul class={cards}>
-        {articles.map((article) => (
-          <li class={card}>
-            <a
-              class={css`
+const Page: FC<Props> = ({ articles }) => (
+  <div>
+    <h1 class={titleClass}>Articles</h1>
+    <ul class={cards}>
+      {articles.map((article) => (
+        <li class={card}>
+          <a
+            class={css`
                 margin-bottom: 1rem;
                 display: block;
               `}
-              href={`/articles/${article.id}`}
-            >
-              {article.title}
-            </a>
-            <DeleteButton articleId={article.id} />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+            href={`/articles/${article.id}`}
+          >
+            {article.title}
+          </a>
+          <DeleteButton articleId={article.id} />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 export default createRoute(async (c) => {
   const articles = await getArticles();
-  return c.render(<Page articles={articles} />, { title: "Articles" });
+  return c.render(<Page articles={articles} />, { title: 'Articles' });
 });

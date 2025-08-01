@@ -1,4 +1,4 @@
-import { prisma } from "./prisma";
+import { prisma } from './prisma';
 
 export type Article = {
   id: string;
@@ -8,10 +8,7 @@ export type Article = {
   updated_at: string;
 };
 
-export const createArticle = async ({
-  title,
-  content,
-}: Pick<Article, "title" | "content">) => {
+export const createArticle = async ({ title, content }: Pick<Article, 'title' | 'content'>): Promise<Article> => {
   const article = await prisma.article.create({
     data: {
       title,
@@ -26,10 +23,10 @@ export const createArticle = async ({
   };
 };
 
-export const getArticles = async () => {
+export const getArticles = async (): Promise<Article[]> => {
   const articles = await prisma.article.findMany({
     orderBy: {
-      created_at: "desc",
+      created_at: 'desc',
     },
   });
 
@@ -40,7 +37,7 @@ export const getArticles = async () => {
   }));
 };
 
-export const getArticleById = async (id: string) => {
+export const getArticleById = async (id: string): Promise<Article | undefined> => {
   const article = await prisma.article.findUnique({
     where: {
       id,
@@ -58,10 +55,11 @@ export const getArticleById = async (id: string) => {
   };
 };
 
-export const deleteArticle = async (id: string) => {
-  await prisma.article.delete({
+export const deleteArticle = async (
+  id: string
+): Promise<{ id: string; title: string; content: string; created_at: Date; updated_at: Date }> =>
+  prisma.article.delete({
     where: {
       id,
     },
   });
-};

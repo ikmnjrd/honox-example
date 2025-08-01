@@ -1,9 +1,9 @@
-import honox from "honox/vite";
-import clientBuild from "honox/vite/client";
-import { defineConfig } from "vite";
+import honox from 'honox/vite';
+import clientBuild from 'honox/vite/client';
+import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => {
-  if (mode === "client") {
+  if (mode === 'client') {
     return {
       plugins: [clientBuild()],
     };
@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     return {
       plugins: [honox()],
       ssr: {
-        external: ["@prisma/client", ".prisma"],
+        external: ['@prisma/client', '.prisma'],
       },
     };
   }
