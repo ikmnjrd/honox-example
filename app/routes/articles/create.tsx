@@ -1,132 +1,120 @@
-import { css } from 'hono/css';
-import { createRoute } from 'honox/factory';
-import type { FC } from 'hono/jsx';
-import { z } from 'zod';
 import { zValidator } from '@hono/zod-validator';
+import { css } from 'hono/css';
+import type { FC } from 'hono/jsx';
+import { createRoute } from '../../factory';
+import { z } from 'zod';
+import { classButton } from '../../components/button';
+import Title from '../../components/title';
 import { createArticle } from '../../lib/db';
-
-const titleClass = css`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-`;
-
-const formClass = css`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const labelClass = css`
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  gap: 0.5rem;
-`;
-
-const inputClass = css`
-  width: 100%;
-  padding: 0.5rem 0.25em;
-  border-radius: 3px;
-  border: 2px solid #ddd;
-`;
-
-const textareaClass = css`
-  width: 100%;
-  border: 2px solid #ddd;
-  border-radius: 3px;
-  padding: 0.5rem;
-  min-height: 10rem;
-  resize: vertical;
-`;
-
-const buttonClass = css`
-  padding: 0.5rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 999px;
-`;
-
-const errorClass = css`
-  color: red;
-  font-size: 0.75rem;
-`;
+import ContentForm from '../../islands/contentForm';
 
 type Data = {
-  title: {
-    value: string;
-    error: string[] | undefined;
-  };
-  content: {
-    value: string;
-    error: string[] | undefined;
-  };
+  error?: Record<string, string[] | undefined>;
+  title?: string;
+  content?: string;
 };
 
-type Props = {
-  data?: Data;
+const classForm = css`
+  background-color: #fff;
+  padding: 1.5rem;
+  border-width: 1px;
+  border-radius: 0.75rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+`;
+
+const classDivInputs = css`
+  row-gap: 0.5rem;
+  flex-direction: column;
+  display: flex;
+`;
+
+const classDivButton = css`
+  justify-content: flex-end;
+  display: flex;
+  margin-top: 1rem;
+`;
+
+const classInputTitle = css`
+  padding: 0.5rem;
+  border-color: rgb(209 213 219);
+  border-width: 1px;
+  border-radius: 0.375rem;
+  width: 100%;
+`;
+
+const grayColor = css`
+  color: rgb(107 114 128);
+`;
+
+const classTextRed = css`
+  color: rgb(239 68 68);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+`;
+
+const Page: FC<{ data?: Data }> = ({ data }) => {
+  console.log('page');
+  return (
+    <div
+      class={css`
+        margin-top: 1rem;
+      `}
+    >
+      <Title>Create Post</Title>
+      <div x-data>
+        {/* @ts-expect-error */}
+        <form class={classForm} method="POST">
+          <div class={classDivInputs}>
+            <div>
+              <label class={grayColor} htmlFor="title">
+                Title
+              </label>
+              <input id="title" class={classInputTitle} type="text" name="title" value={data?.title} />
+              {data?.error?.title && <p class={classTextRed}>{data.error.title}</p>}
+            </div>
+            <div>
+              <ContentForm initialValue={data?.content} />
+              {data?.error?.content && <p class="text-red-500 text-sm">{data.error.content}</p>}
+            </div>
+          </div>
+          <div class={classDivButton}>
+            <button class={classButton} type="submit">
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
-const Page: FC<Props> = ({ data }) => (
-  <div>
-    <h1 class={titleClass}>Create an article</h1>
-    <form class={formClass} method="post">
-      <label class={labelClass}>
-        Title
-        <input name="title" class={inputClass} type="text" value={data?.title.value} />
-      </label>
-      {data?.title.error && data.title.error.map((error) => <p class={errorClass}>{error}</p>)}
-      <label class={labelClass}>
-        Content
-        <textarea name="content" class={textareaClass} value={data?.content.value} />
-      </label>
-      {data?.content.error && data.content.error.map((error) => <p class={errorClass}>{error}</p>)}
+export default createRoute((c) => {
+  console.log('Create article route');
+  return c.render(<Page />);
+});
 
-      <button class={buttonClass} type="submit">
-        Create
-      </button>
-    </form>
-  </div>
-);
-
-export default createRoute((c) =>
-  c.render(<Page />, {
-    title: 'Create an article',
-  })
-);
-
-const Article = z.object({
-  title: z.string().min(1).max(255),
+const schema = z.object({
+  title: z.string().min(1),
   content: z.string().min(1),
 });
 
 export const POST = createRoute(
-  zValidator('form', Article, async (result, c) => {
-    if (result.success) {
+  zValidator('form', schema, (result, c) => {
+    if (!result.success) {
       const { title, content } = result.data;
-      await createArticle({ title, content });
-
-      return c.redirect('/articles');
+      // @ts-expect-error
+      return c.render(<Page data={{ title, content, error: result.error.flatten().fieldErrors }} />);
     }
-
-    const { title, content } = result.data;
-    const data: Data = {
-      title: {
-        value: title,
-        // Flatten the error to get field-specific errors
-        // @ts-expect-error
-        error: z.flattenError(result.error).fieldErrors['title'],
-      },
-      content: {
-        value: content,
-        // @ts-expect-error
-        error: z.flattenError(result.error).fieldErrors['content'],
-      },
-    };
-
-    return c.render(<Page data={data} />, {
-      title: 'Create an article',
+  }),
+  async (c) => {
+    const { title, content } = c.req.valid('form');
+    await createArticle({
+      title,
+      content,
     });
-  })
+    console.log('hoge');
+
+    return c.redirect('/', 303);
+  }
 );

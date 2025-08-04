@@ -9,6 +9,7 @@ export type Article = {
 };
 
 export const createArticle = async ({ title, content }: Pick<Article, 'title' | 'content'>): Promise<Article> => {
+  console.log('hoge');
   const article = await prisma.article.create({
     data: {
       title,
@@ -58,7 +59,7 @@ export const getArticleById = async (id: string): Promise<Article | undefined> =
 export const deleteArticle = async (
   id: string
 ): Promise<{ id: string; title: string; content: string; created_at: Date; updated_at: Date }> =>
-  prisma.article.delete({
+  await prisma.article.delete({
     where: {
       id,
     },

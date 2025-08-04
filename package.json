@@ -25,7 +25,9 @@
   "description": "",
   "dependencies": {
     "@hono/zod-validator": "^0.7.2",
+    "@markdoc/markdoc": "^0.5.2",
     "@prisma/client": "^6.13.0",
+    "dayjs": "^1.11.13",
     "hono": "^4.8.10",
     "honox": "^0.1.43",
     "zod": "^4.0.14"

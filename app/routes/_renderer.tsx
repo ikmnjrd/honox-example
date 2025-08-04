@@ -1,38 +1,45 @@
-import { Style, css } from 'hono/css';
+import { css, Style } from 'hono/css';
 import { jsxRenderer } from 'hono/jsx-renderer';
-import { Script } from 'honox/server';
-import { Layout } from '../components/Layout';
+import { Link, Script } from 'honox/server';
+import Header from '../components/header';
 
-export default jsxRenderer(({ children, title }) => (
-  <html lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{title}</title>
-      <Script src="/app/client.ts" />
-      <Style>
-        {css`
-            html {
-              font-size: 16px;
-              font-family: system-ui, sans-serif;
-            }
-            body {
-              min-height: 100vh;
-              color: #262626;
-              background-color: #f4f4f4;
-            }
-            *,
-            *::before,
-            *::after {
-              box-sizing: border-box;
-              margin: 0;
-              padding: 0;
-            }
-          }`}
-      </Style>
-    </head>
-    <body>
-      <Layout>{children}</Layout>
-    </body>
-  </html>
-));
+const bodyClass = css`
+  background-color: rgb(229 231 235);
+`;
+
+const containerClass = css`
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 640px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+`;
+
+export default jsxRenderer(({ children }) => {
+  return (
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <Link href="/app/style.css" rel="stylesheet" />
+        <Style />
+        <Script src="/app/client.ts" />
+      </head>
+      <body class={bodyClass}>
+        <div class={containerClass}>
+          <Header />
+          {children}
+        </div>
+      </body>
+    </html>
+  );
+});
