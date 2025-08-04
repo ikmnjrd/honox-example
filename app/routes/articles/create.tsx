@@ -115,6 +115,6 @@ export const POST = createRoute(
     });
     console.log('hoge');
 
-    return c.redirect('/', 303);
+    return c.redirect('/', 301);
   }
 );
