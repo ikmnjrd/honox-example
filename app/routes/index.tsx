@@ -37,9 +37,9 @@ const ArticleList: FC<{ article: Article }> = ({ article }) => {
       <div x-data>
         {/* @ts-expect-error */}
         <form action={`articles/${article.id}/delete`} method="POST">
-            <button class={classButton} type="submit">
-              Delete
-            </button>
+          <button class={classButton} type="submit">
+            Delete
+          </button>
         </form>
       </div>
     </li>

@@ -9,7 +9,6 @@ export type Article = {
 };
 
 export const createArticle = async ({ title, content }: Pick<Article, 'title' | 'content'>): Promise<Article> => {
-  console.log('hoge');
   const article = await prisma.article.create({
     data: {
       title,

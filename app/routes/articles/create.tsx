@@ -54,7 +54,6 @@ const classTextRed = css`
 `;
 
 const Page: FC<{ data?: Data }> = ({ data }) => {
-  console.log('page');
   return (
     <div
       class={css`

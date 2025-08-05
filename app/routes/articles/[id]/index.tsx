@@ -22,8 +22,6 @@ const titleClass = css`
   font-size: 2rem;
 `;
 
-
-
 export default createRoute(async (c) => {
   const { id } = c.req.param<'/:id'>();
   const article = await getArticleById(id);

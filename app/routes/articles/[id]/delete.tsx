@@ -6,9 +6,9 @@ import { getArticleById, deleteArticle } from '../../../lib/db';
 
 dayjs.extend(relativeTime);
 
-export const POST =  createRoute(async (c) => {
+export const POST = createRoute(async (c) => {
   const { id } = c.req.param<'/:id/delete'>();
-  console.log("delete action", id)
+  console.log('delete action', id);
   const article = await getArticleById(id);
 
   if (!article) {
@@ -17,5 +17,5 @@ export const POST =  createRoute(async (c) => {
 
   await deleteArticle(id);
 
-  return c.redirect('/', 303)
+  return c.redirect('/', 303);
 });
