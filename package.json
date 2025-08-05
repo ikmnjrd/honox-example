@@ -1,12 +1,11 @@
 {
   "name": "honox-example",
-  "type": "module",
   "private": true,
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode client && vite build --ssr app/server.ts",
-    "preview": "node server-runner.js",
+    "preview": "node server-runner.mjs",
     "lint": "run-p lint:* format",
     "lint:oxlint": "oxlint",
     "lint:eslint": "npx eslint",
