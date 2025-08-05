@@ -1,10 +1,10 @@
-import dayjs from 'dayjs/esm';
-import relativeTime from 'dayjs/esm/plugin/relativeTime';
-import { css } from 'hono/css';
-import { createRoute } from '../../../factory';
-import Time from '../../../components/time';
-import { getArticleById } from '../../../lib/db';
-import { parseMarkdown } from '../../../utils';
+import dayjs from "dayjs/esm";
+import relativeTime from "dayjs/esm/plugin/relativeTime";
+import { css } from "hono/css";
+import { createRoute } from "../../../factory";
+import Time from "../../../components/time";
+import { getArticleById } from "../../../lib/db";
+import { parseMarkdown } from "../../../utils";
 
 dayjs.extend(relativeTime);
 
@@ -23,7 +23,7 @@ const titleClass = css`
 `;
 
 export default createRoute(async (c) => {
-  const { id } = c.req.param<'/:id'>();
+  const { id } = c.req.param<"/:id">();
   const article = await getArticleById(id);
 
   if (!article) {
@@ -41,7 +41,7 @@ export default createRoute(async (c) => {
       <article class={articleClass}>
         <header>
           <h2 class={titleClass}>{article.title}</h2>
-          <Time created_at={article.created_at}>{dayjs(article.created_at).format('YYYY-MM-DD HH:mm:ss')}</Time>
+          <Time created_at={article.created_at}>{dayjs(article.created_at).format("YYYY-MM-DD HH:mm:ss")}</Time>
         </header>
         <section
           class={css`
@@ -51,6 +51,6 @@ export default createRoute(async (c) => {
           <div id="contents" dangerouslySetInnerHTML={{ __html: parsedContent }} />
         </section>
       </article>
-    </div>
+    </div>,
   );
 });

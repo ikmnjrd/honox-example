@@ -1,4 +1,4 @@
-import { prisma } from './prisma';
+import { prisma } from "./prisma";
 
 export type Article = {
   id: string;
@@ -8,7 +8,7 @@ export type Article = {
   updated_at: string;
 };
 
-export const createArticle = async ({ title, content }: Pick<Article, 'title' | 'content'>): Promise<Article> => {
+export const createArticle = async ({ title, content }: Pick<Article, "title" | "content">): Promise<Article> => {
   const article = await prisma.article.create({
     data: {
       title,
@@ -26,7 +26,7 @@ export const createArticle = async ({ title, content }: Pick<Article, 'title' | 
 export const getArticles = async (): Promise<Article[]> => {
   const articles = await prisma.article.findMany({
     orderBy: {
-      created_at: 'desc',
+      created_at: "desc",
     },
   });
 
@@ -56,7 +56,7 @@ export const getArticleById = async (id: string): Promise<Article | undefined> =
 };
 
 export const deleteArticle = async (
-  id: string
+  id: string,
 ): Promise<{ id: string; title: string; content: string; created_at: Date; updated_at: Date }> =>
   await prisma.article.delete({
     where: {

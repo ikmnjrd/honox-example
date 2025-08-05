@@ -1,12 +1,12 @@
-import { zValidator } from '@hono/zod-validator';
-import { css } from 'hono/css';
-import type { FC } from 'hono/jsx';
-import { createRoute } from '../../factory';
-import { z } from 'zod';
-import { classButton } from '../../components/button';
-import Title from '../../components/title';
-import { createArticle } from '../../lib/db';
-import ContentForm from '../../islands/contentForm';
+import { zValidator } from "@hono/zod-validator";
+import { css } from "hono/css";
+import type { FC } from "hono/jsx";
+import { createRoute } from "../../factory";
+import { z } from "zod";
+import { classButton } from "../../components/button";
+import Title from "../../components/title";
+import { createArticle } from "../../lib/db";
+import ContentForm from "../../islands/contentForm";
 
 type Data = {
   error?: Record<string, string[] | undefined>;
@@ -98,7 +98,7 @@ const schema = z.object({
 });
 
 export const POST = createRoute(
-  zValidator('form', schema, (result, c) => {
+  zValidator("form", schema, (result, c) => {
     if (!result.success) {
       const { title, content } = result.data;
       // @ts-expect-error
@@ -106,12 +106,12 @@ export const POST = createRoute(
     }
   }),
   async (c) => {
-    const { title, content } = c.req.valid('form');
+    const { title, content } = c.req.valid("form");
     await createArticle({
       title,
       content,
     });
 
-    return c.redirect('/', 301);
-  }
+    return c.redirect("/", 301);
+  },
 );

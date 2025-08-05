@@ -1,5 +1,5 @@
-import { css } from 'hono/css';
-import type { FC } from 'hono/jsx';
+import { css } from "hono/css";
+import type { FC } from "hono/jsx";
 
 const headerClass = css`
   color: rgb(31 41 55);

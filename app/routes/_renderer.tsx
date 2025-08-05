@@ -1,7 +1,7 @@
-import { css, Style } from 'hono/css';
-import { jsxRenderer } from 'hono/jsx-renderer';
-import { Link, Script } from 'honox/server';
-import Header from '../components/header';
+import { css, Style } from "hono/css";
+import { jsxRenderer } from "hono/jsx-renderer";
+import { Link, Script } from "honox/server";
+import Header from "../components/header";
 
 const bodyClass = css`
   background-color: rgb(229 231 235);

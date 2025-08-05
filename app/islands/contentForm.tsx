@@ -1,6 +1,6 @@
-import { css } from 'hono/css';
-import { useState } from 'hono/jsx';
-import { parseMarkdown } from '../utils';
+import { css } from "hono/css";
+import { useState } from "hono/jsx";
+import { parseMarkdown } from "../utils";
 
 const grayColor = css`
   color: rgb(107 114 128);
@@ -19,7 +19,7 @@ interface Props {
   initialValue?: string;
 }
 
-export default function ContentForm({ initialValue = '' }: Props) {
+export default function ContentForm({ initialValue = "" }: Props) {
   const [value, setValue] = useState(initialValue);
   const [preview, setPreview] = useState(false);
 

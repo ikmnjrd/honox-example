@@ -1,5 +1,5 @@
-import { css } from 'hono/css';
-import type { FC, PropsWithChildren } from 'hono/jsx';
+import { css } from "hono/css";
+import type { FC, PropsWithChildren } from "hono/jsx";
 
 const timeClass = css`
   color: rgb(107 114 128);

@@ -1,13 +1,13 @@
-import dayjs from 'dayjs/esm';
-import relativeTime from 'dayjs/esm/plugin/relativeTime';
-import { css } from 'hono/css';
-import type { FC } from 'hono/jsx';
-import { createRoute } from '../factory';
-import { classButton } from '../components/button';
-import Time from '../components/time';
-import Title from '../components/title';
-import type { Article } from '../lib/db';
-import { getArticles, deleteArticle } from '../lib/db';
+import dayjs from "dayjs/esm";
+import relativeTime from "dayjs/esm/plugin/relativeTime";
+import { css } from "hono/css";
+import type { FC } from "hono/jsx";
+import { createRoute } from "../factory";
+import { classButton } from "../components/button";
+import Time from "../components/time";
+import Title from "../components/title";
+import type { Article } from "../lib/db";
+import { getArticles, deleteArticle } from "../lib/db";
 
 dayjs.extend(relativeTime);
 
@@ -75,6 +75,6 @@ export const GET = createRoute(async (c) => {
           ))}
         </ul>
       </section>
-    </>
+    </>,
   );
 });

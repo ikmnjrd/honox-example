@@ -1,5 +1,5 @@
-import { useState } from 'hono/jsx';
-import type { FC } from 'hono/jsx';
+import { useState } from "hono/jsx";
+import type { FC } from "hono/jsx";
 
 const Counter: FC = () => {
   const [count, setCount] = useState(0);

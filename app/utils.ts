@@ -1,4 +1,4 @@
-import Markdoc from '@markdoc/markdoc';
+import Markdoc from "@markdoc/markdoc";
 
 export const parseMarkdown = (markdown: string) => {
   const ast = Markdoc.parse(markdown);

@@ -1,5 +1,5 @@
-import { serve } from '@hono/node-server';
-import app from './dist/server.mjs';
+import { serve } from "@hono/node-server";
+import app from "./dist/server.mjs";
 
 const port = process.env.PORT || 3000;
 
@@ -10,5 +10,5 @@ serve(
   },
   (info) => {
     console.log(`Server running at http://localhost:${info.port}`);
-  }
+  },
 );

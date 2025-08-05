@@ -1,4 +1,4 @@
-import type { ErrorHandler } from 'hono';
+import type { ErrorHandler } from "hono";
 
 const handler: ErrorHandler = (e, c) => {
   console.log(e.message);

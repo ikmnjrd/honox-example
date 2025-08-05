@@ -1,4 +1,4 @@
-import { css } from 'hono/css';
+import { css } from "hono/css";
 
 export const classButton = css`
   color: #fff;

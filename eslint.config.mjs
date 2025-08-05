@@ -1,31 +1,31 @@
 // eslint.config.ts
-import tsParser from '@typescript-eslint/parser';
-import oxlint from 'eslint-plugin-oxlint';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import tsParser from "@typescript-eslint/parser";
+import oxlint from "eslint-plugin-oxlint";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 // import pluginLocal from './eslint-plugin-local/dist/index.js';
 
-const ignores = ['eslint-plugin-local/**'];
+const ignores = ["eslint-plugin-local/**"];
 
 export default tseslint.config(
   {
     linterOptions: {
       // oxlintで使用してるignoreコメントが使ってないものとして検出されるためoff
-      reportUnusedDisableDirectives: 'off',
+      reportUnusedDisableDirectives: "off",
     },
   },
   {
-    ignores: ['./node_modules/**'],
+    ignores: ["./node_modules/**"],
   },
   {
-    files: ['app/**/*.{ts,tsx}'],
+    files: ["app/**/*.{ts,tsx}", "./*.{ts,mjs,mts}"],
     ignores,
     languageOptions: {
       globals: globals.browser,
       parser: tsParser,
     },
   },
-  ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json')
+  ...oxlint.buildFromOxlintConfigFile(".oxlintrc.json"),
 
   /* プロジェクト固有のカスタムeslintルール */
   // {
