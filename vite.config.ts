@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
         '**/prisma/dev.db',
         '**/prisma/dev.db-shm',
         '**/prisma/dev.db-wal',
+        '**/prisma/dev.db-journal',
       ],
     },
   },
