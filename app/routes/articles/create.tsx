@@ -90,7 +90,6 @@ const Page: FC<{ data?: Data }> = ({ data }) => {
 };
 
 export default createRoute((c) => {
-  console.log('Create article route');
   return c.render(<Page />);
 });
 
@@ -113,7 +112,6 @@ export const POST = createRoute(
       title,
       content,
     });
-    console.log('hoge');
 
     return c.redirect('/', 301);
   }

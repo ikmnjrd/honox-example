@@ -31,7 +31,7 @@ const ArticleList: FC<{ article: Article }> = ({ article }) => {
   return (
     <li class={listClass}>
       <a href={`articles/${article.id}`}>
-        <h3 class={titleClass}>{article.title}</h3>
+        <h3 class="text-blue-500">{article.title}</h3>
         <Time created_at={article.created_at}>{dayjs(article.created_at).fromNow()}</Time>
       </a>
       <div x-data>
