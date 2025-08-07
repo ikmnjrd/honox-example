@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    // "eslint-plugin-local/src/index.ts"
+  ],
+  "project": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "e2e/**/*.ts"
+  ],
+  "ignore": []
+}
